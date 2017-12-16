@@ -1,0 +1,38 @@
+{
+  "name": "@shapeshift/core",
+  "version": "0.1.0",
+  "description": "Vue.js JSON Schema based form component",
+  "main": "dist/shapeshift.cjs.js",
+  "module": "dist/shapeshift.es.js",
+  "browser": "dist/shapeshift.umd.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shapeshiftjs/shapeshift-core.git"
+  },
+  "author": "Bailey Hu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shapeshiftjs/shapeshift-core/issues"
+  },
+  "homepage": "https://github.com/shapeshiftjs/shapeshift-core#readme",
+  "devDependencies": {
+    "@types/json-schema": "^6.0.0",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.52.1",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-typescript2": "^0.8.4",
+    "typescript": "^2.6.2"
+  },
+  "files": [
+    "dist"
+  ]
+}
