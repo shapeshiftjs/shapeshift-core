@@ -1,6 +1,3 @@
-# shapeshift-core
-
-[![Build Stats](https://api.travis-ci.org/shapeshiftjs/shapeshift-core.svg)](https://api.travis-ci.org/shapeshiftjs/shapeshift-core)
-[![Coverage Status](https://coveralls.io/repos/github/shapeshiftjs/shapeshift-core/badge.svg?branch=master)](https://coveralls.io/github/shapeshiftjs/shapeshift-core?branch=master)
+# Shapeshift &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![Build Stats](https://travis-ci.org/shapeshiftjs/shapeshift-core.svg?branch=master)](https://travis-ci.org/shapeshiftjs/shapeshift-core) [![Coverage Status](https://coveralls.io/repos/github/shapeshiftjs/shapeshift-core/badge.svg)](https://coveralls.io/github/shapeshiftjs/shapeshift-core)
 
 JSON Schema parsers, iterators and validators
