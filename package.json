@@ -10,8 +10,8 @@
     "clean": "rimraf dist",
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "pretest": "npm run build"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -24,15 +24,30 @@
   },
   "homepage": "https://github.com/shapeshiftjs/shapeshift-core#readme",
   "devDependencies": {
+    "@types/jest": "^21.1.8",
     "@types/json-schema": "^6.0.0",
+    "jest": "^21.2.1",
     "rimraf": "^2.6.2",
     "rollup": "^0.52.1",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-typescript2": "^0.8.4",
+    "ts-jest": "^21.2.4",
     "typescript": "^2.6.2"
   },
-  "files": [
-    "dist"
-  ]
+  "files": ["dist"],
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.test.json"
+      }
+    },
+    "roots": ["src"],
+    "transform": {
+      "^.+\\.ts?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": ["ts", "tsx", "js", "json"],
+    "mapCoverage": true
+  }
 }

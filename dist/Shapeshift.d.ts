@@ -1,11 +1,15 @@
 import { JSONSchema4 } from 'json-schema';
 export interface UISchema {
-    order: string[];
-    widget: string;
+    order?: string[];
+    properties?: {
+        [k: string]: UISchema;
+    };
+    widget?: string;
 }
+export declare type SSForEachCallback = (key: any, schema?: JSONSchema4, uiSchema?: UISchema) => void;
 export declare class Shapeshift {
-    schema: JSONSchema4;
+    schema?: JSONSchema4;
     uiSchema?: UISchema;
-    constructor(schema: JSONSchema4, uiSchema?: UISchema);
-    forEach(func: (name: string, schema: JSONSchema4, uiSchema: any) => void): void;
+    constructor(schema?: JSONSchema4, uiSchema?: UISchema);
+    forEach(func: SSForEachCallback): void;
 }
