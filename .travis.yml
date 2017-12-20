@@ -4,6 +4,7 @@ node_js:
 
 script:
   - yarn test:coveralls
+  - yarn build
   
 cache:
   yarn: true

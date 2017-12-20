@@ -51,9 +51,12 @@ typings/
 
 # Output of 'npm pack'
 *.tgz
+dist/
 
 # Yarn Integrity file
 .yarn-integrity
 
 # dotenv environment variables file
 .env
+dist/shapeshift.cjs.js
+dist/shapeshift.cjs.js
