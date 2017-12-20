@@ -1,6 +1,6 @@
 {
   "name": "@shapeshift/core",
-  "version": "0.1.0",
+  "version": "1.0.0-alpha.1",
   "description": "Vue.js JSON Schema based form component",
   "main": "dist/shapeshift.cjs.js",
   "module": "dist/shapeshift.es.js",
@@ -35,6 +35,7 @@
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-typescript2": "^0.9.0",
+    "semver": "^5.4.1",
     "ts-jest": "^22.0.0",
     "typescript": "^2.6.2"
   },
