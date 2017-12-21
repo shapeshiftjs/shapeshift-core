@@ -1,4 +1,4 @@
-import shapeshift from './index';
+import { shapeshift } from './index';
 
 test('Shapeshift initializes with default values', () => {
   let ss = shapeshift({}, {});
@@ -6,13 +6,19 @@ test('Shapeshift initializes with default values', () => {
   expect(ss.uiSchema()).toEqual({});
 });
 
-test('Shapeshift throws when schema is not object', () => {
+test('Shapeshift throws when schema is not an object', () => {
   expect(() => {
     let ss = shapeshift(null);
   }).toThrow();
 });
 
-test('forEach() no-op with empty {} schema', () => {
+test('Shapeshift throws when uiSchema is not an object', () => {
+  expect(() => {
+    let ss = shapeshift({}, "1234");
+  }).toThrow();
+})
+
+test('forEach() no-op with empty schema object', () => {
   let ss = shapeshift({});
   let mockFn = jest.fn();
   ss.forEach(mockFn);
