@@ -1,11 +1,11 @@
 import { DataType } from "../index";
 import * as nv from './NumberValidators';
 
-export function isString(data?: any): Boolean {
+export function isString(data?: any): boolean {
     return typeof data === DataType.STRING;
 }
 
-export function isMinLength(data: string, length: number): Boolean {
+export function isMinLength(data: string, length: number): boolean {
     if (!isString(data)) {
         throw new Error('data is not a string');
     }
@@ -17,7 +17,7 @@ export function isMinLength(data: string, length: number): Boolean {
     return data.length >= length;
 }
 
-export function isMaxLength(data: string, length: number): Boolean {
+export function isMaxLength(data: string, length: number): boolean {
     if (!isString(data)) {
         throw new Error('data is not a string');
     }
@@ -29,7 +29,7 @@ export function isMaxLength(data: string, length: number): Boolean {
     return data.length <= length;
 }
 
-export function matchPattern(data: string, pattern: string): Boolean {
+export function matchPattern(data: string, pattern: string): boolean {
     if (!isString(data)) {
         throw new Error('data is not a string');
     }

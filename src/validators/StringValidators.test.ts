@@ -72,7 +72,6 @@ test('isMaxLength() to throw for non strings', () => {
     }).toThrow();
 });
 
-
 test('isMaxLength() is false for more than length', () => {
     expect(v.isMaxLength("12567", 3)).toEqual(false);
 });

@@ -52,7 +52,7 @@ test('validate() returns true for array', () => {
     }, [])).toEqual(true);
 });
 
-test('validate() returns false for object', () => {
+test('validate() returns false for object using string', () => {
     expect(Validators.validate({
         type: 'object'
     }, "hello")).toEqual(false);
@@ -64,7 +64,7 @@ test('validate() returns true for object', () => {
     }, {})).toEqual(true);
 });
 
-test('validate() returns false for number', () => {
+test('validate() returns false for number using string', () => {
     expect(Validators.validate({
         type: 'number'
     }, "hello")).toEqual(false);
@@ -82,7 +82,7 @@ test('validate() returns true for number using integer', () => {
     }, 12)).toEqual(true);
 });
 
-test('validate() returns false for integer', () => {
+test('validate() returns false for integer using string', () => {
     expect(Validators.validate({
         type: 'integer'
     }, "hello")).toEqual(false);
@@ -110,4 +110,49 @@ test('validate() returns true for null', () => {
     expect(Validators.validate({
         type: 'null'
     }, null)).toEqual(true);
+});
+
+test('validate() compound string', () => {
+    expect(Validators.validate({
+        type: 'string',
+        minLength: 2,
+        maxLength: 5,
+        pattern: '^hello$'
+    }, 'hello')).toEqual(true);
+});
+
+test('validate() compound integer', () => {
+    expect(Validators.validate({
+        type: 'integer',
+        minimum: 2.5,
+        maximum: 4.5
+    }, 3)).toEqual(true);
+});
+test('validate() compound number', () => {
+    expect(Validators.validate({
+        type: 'number',
+        minimum: 2.5,
+        maximum: 6.5,
+    }, 3.75)).toEqual(true);
+});
+test('validate() false for compound number exclusive', () => {
+    expect(Validators.validate({
+        type: 'number',
+        minimum: 2.5,
+        maximum: 6.5,
+        exclusiveMinimum: true,
+        exclusiveMaximum: true
+    }, 2.5)).toEqual(false);
+});
+test('validate() integer multiple', () => {
+    expect(Validators.validate({
+        type: 'integer',
+        multipleOf: 2
+    }, 4)).toEqual(true);
+});
+test('validate() number multiple', () => {
+    expect(Validators.validate({
+        type: 'number',
+        multipleOf: 2.5
+    }, 7.5)).toEqual(true);
 });
