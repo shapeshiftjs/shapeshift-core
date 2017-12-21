@@ -1,26 +1,26 @@
-import { Shapeshift } from './Shapeshift';
+import shapeshift from './index';
 
 test('Shapeshift initializes with default values', () => {
-  let shapeshift = new Shapeshift({}, {});
-  expect(shapeshift.schema).toEqual({});
-  expect(shapeshift.uiSchema).toEqual({});
+  let ss = shapeshift({}, {});
+  expect(ss.schema()).toEqual({});
+  expect(ss.uiSchema()).toEqual({});
 });
 
-test('forEach() executes without valid schema', () => {
-  let shapeshift = new Shapeshift();
+test('Shapeshift throws when schema is not object', () => {
+  expect(() => {
+    let ss = shapeshift(null);
+  }).toThrow();
+});
+
+test('forEach() no-op with empty {} schema', () => {
+  let ss = shapeshift({});
   let mockFn = jest.fn();
-  shapeshift.forEach(mockFn);
-  expect(mockFn).toHaveBeenCalledTimes(0);
-
-  let shapeshift2 = new Shapeshift({
-    type: 'object'
-  });
-  shapeshift2.forEach(mockFn);
+  ss.forEach(mockFn);
   expect(mockFn).toHaveBeenCalledTimes(0);
 });
 
-test('forEach() executes without object schema', () => {
-  let shapeshift = new Shapeshift(
+test('forEach() no-op with non-object type schema', () => {
+  let ss = shapeshift(
     {
       title: 'Just Mev',
       type: 'string'
@@ -30,12 +30,21 @@ test('forEach() executes without object schema', () => {
     }
   );
   let mockFn = jest.fn();
-  shapeshift.forEach(mockFn);
-  expect(mockFn).toHaveBeenCalledTimes(1);
+  ss.forEach(mockFn);
+  expect(mockFn).toHaveBeenCalledTimes(0);
 });
 
-test('forEach() executes correctly without UISchema', () => {
-  let shapeshift = new Shapeshift({
+test('forEach() no-op with object type schema with no properties', () => {
+  let ss = shapeshift({
+    type: 'object'
+  });
+  let mockFn = jest.fn();
+  ss.forEach(mockFn);
+  expect(mockFn).toHaveBeenCalledTimes(0);
+});
+
+test('forEach() iterates all properties without UISchema', () => {
+  let ss = shapeshift({
     type: 'object',
     properties: {
       name: {
@@ -48,12 +57,12 @@ test('forEach() executes correctly without UISchema', () => {
   });
 
   let mockFn = jest.fn();
-  shapeshift.forEach(mockFn);
+  ss.forEach(mockFn);
   expect(mockFn).toHaveBeenCalledTimes(2);
 });
 
-test('forEach() executes correctly with UISchema order', () => {
-  let shapeshift = new Shapeshift(
+test('forEach() iterates by UISchema order ignoring undefined values', () => {
+  let ss = shapeshift(
     {
       type: 'object',
       properties: {
@@ -71,6 +80,6 @@ test('forEach() executes correctly with UISchema order', () => {
   );
 
   let mockFn = jest.fn();
-  shapeshift.forEach(mockFn);
+  ss.forEach(mockFn);
   expect(mockFn).toHaveBeenCalledTimes(2);
 });
