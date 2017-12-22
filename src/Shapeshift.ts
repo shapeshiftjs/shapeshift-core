@@ -18,8 +18,11 @@ export class Shapeshift {
   schema: JSONSchema4;
   uiSchema: UISchema;
 
+  name?: string;
   type?: JSONSchema4TypeName | JSONSchema4TypeName[];
   widget?: string;
+  children?: Shapeshift[];
+  depth = 0;
 
   constructor(schema: JSONSchema4, uiSchema?: UISchema) {
     if (typeof schema !== DataType.OBJECT || schema === null || Array.isArray(uiSchema)) {
@@ -69,24 +72,32 @@ export class Shapeshift {
       return;
     }
 
-    // If there is no UISchema defined then just return keys of schema
-    // properties in declared order.
+    // If there is no UISchema defined then return the keys of schema properties.
     if (!Array.isArray(uiSchema.order)) {
-      const properties = schema.properties!;
-      Object.keys(properties).forEach(key => {
-        func(key, new Shapeshift(properties[key]));
+      Object.keys(schema.properties!).forEach(key => {
+        const ss = this.getNestedValue(key, schema, uiSchema);
+        func(key, ss);
       });
       return;
     }
 
-    uiSchema.order.forEach(value => {
-      if (schema.properties && schema.properties[value]) {
-        if (uiSchema.properties) {
-          func(value, new Shapeshift(schema.properties[value], uiSchema.properties[value]));
-        } else {
-          func(value, new Shapeshift(schema.properties[value]));
-        }
+    uiSchema.order.forEach(key => {
+      if (schema.properties && schema.properties[key]) {
+        const ss = this.getNestedValue(key, schema, uiSchema);
+        func(key, ss);
       }
     });
+  }
+
+  private getNestedValue(key: string, schema: JSONSchema4, uiSchema: UISchema): Shapeshift {
+    let property = schema.properties![key];
+    let uiProperty = undefined;
+    if (uiSchema && uiSchema.properties) {
+      uiProperty = uiSchema.properties[key];
+    }
+
+    let ss = new Shapeshift(property, uiProperty);
+    ss.depth = this.depth + 1;
+    return ss;
   }
 }
