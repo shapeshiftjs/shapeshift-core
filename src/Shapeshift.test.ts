@@ -2,8 +2,8 @@ import { shapeshift } from './index';
 
 test('Shapeshift initializes with default values', () => {
   let ss = shapeshift({}, {});
-  expect(ss.schema()).toEqual({});
-  expect(ss.uiSchema()).toEqual({});
+  expect(ss.schema).toEqual({});
+  expect(ss.uiSchema).toEqual({});
 });
 
 test('Shapeshift throws when schema is not an object', () => {

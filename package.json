@@ -12,8 +12,7 @@
     "dev": "rollup -c -w",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:coveralls":
-      "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "test:coveralls": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +29,7 @@
     "@types/json-schema": "^6.0.0",
     "coveralls": "^3.0.0",
     "jest": "^22.0.3",
+    "jest-cli": "^22.0.3",
     "rimraf": "^2.6.2",
     "rollup": "^0.52.1",
     "rollup-plugin-commonjs": "^8.2.6",
@@ -39,19 +39,28 @@
     "ts-jest": "^22.0.0",
     "typescript": "^2.6.2"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "jest": {
     "globals": {
       "ts-jest": {
         "tsConfigFile": "tsconfig.test.json"
       }
     },
-    "roots": ["src"],
+    "roots": [
+      "src"
+    ],
     "transform": {
       "^.+\\.ts?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "json"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
     "mapCoverage": true
   }
 }

@@ -5,11 +5,12 @@ import { DataType } from './types';
 import * as Validators from './validators';
 
 function shapeshift(schema: JSONSchema4, uiSchema?: UISchema): Shapeshift {
-    return new Shapeshift(schema, uiSchema);
+  return new Shapeshift(schema, uiSchema);
 }
 
 export {
-    shapeshift,
-    DataType,
-    Validators,
+  shapeshift,
+  DataType,
+  Validators,
+  Shapeshift,
 }

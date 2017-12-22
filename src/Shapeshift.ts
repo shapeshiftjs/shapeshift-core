@@ -1,4 +1,4 @@
-import { JSONSchema4 } from 'json-schema';
+import { JSONSchema4, JSONSchema4TypeName } from 'json-schema';
 import { DataType } from './types';
 
 export interface UISchema {
@@ -11,12 +11,15 @@ export interface UISchema {
 
 export type SSForEachCallback = (
   key: any,
-  shapeshift?: Shapeshift
+  shapeshift: Shapeshift
 ) => void;
 
 export class Shapeshift {
-  private _schema: JSONSchema4;
-  private _uiSchema: UISchema;
+  schema: JSONSchema4;
+  uiSchema: UISchema;
+
+  type?: JSONSchema4TypeName | JSONSchema4TypeName[];
+  widget?: string;
 
   constructor(schema: JSONSchema4, uiSchema?: UISchema) {
     if (typeof schema !== DataType.OBJECT || schema === null || Array.isArray(uiSchema)) {
@@ -27,21 +30,35 @@ export class Shapeshift {
       throw new Error('UI Schema must be an object');
     }
 
-    this._schema = schema;
-    this._uiSchema = uiSchema || {};
-  }
+    this.schema = schema;
+    this.uiSchema = uiSchema || {};
 
-  schema(): JSONSchema4 {
-    return this._schema;
-  }
-
-  uiSchema(): UISchema | undefined {
-    return this._uiSchema;
+    this.type = schema.type;
+    if (this.uiSchema && this.uiSchema.widget) {
+      this.widget = this.uiSchema.widget;
+    } else {
+      switch (this.type) {
+        case 'string':
+        case 'number':
+        case 'integer':
+          this.widget = 'textfield';
+          break;
+        case 'boolean':
+          this.widget = 'checkbox';
+          break;
+        case 'object':
+          this.widget = 'fieldset';
+          break;
+        default:
+          this.widget = 'hidden';
+          break;
+      }
+    }
   }
 
   forEach(func: SSForEachCallback) {
-    const schema = this._schema;
-    const uiSchema = this._uiSchema;
+    const schema = this.schema;
+    const uiSchema = this.uiSchema;
 
     // forEach is a no-op for schemas that are not objects
     // or has no properties.
@@ -64,7 +81,11 @@ export class Shapeshift {
 
     uiSchema.order.forEach(value => {
       if (schema.properties && schema.properties[value]) {
-        func(value, new Shapeshift(schema.properties[value], uiSchema[value]));
+        if (uiSchema.properties) {
+          func(value, new Shapeshift(schema.properties[value], uiSchema.properties[value]));
+        } else {
+          func(value, new Shapeshift(schema.properties[value]));
+        }
       }
     });
   }
