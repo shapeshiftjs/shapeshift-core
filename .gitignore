@@ -58,5 +58,3 @@ dist/
 
 # dotenv environment variables file
 .env
-dist/shapeshift.cjs.js
-dist/shapeshift.cjs.js
