@@ -13,7 +13,7 @@ cache:
 before_deploy:
   - rm -rf release
   - mkdir -p release
-  - zip -jr "release/core-${TRAVIS_TAG}.zip" dist/*
+  - zip -r "release/core-${TRAVIS_TAG}.zip" dist/*
 
 deploy:
   - provider: npm

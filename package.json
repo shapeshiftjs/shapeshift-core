@@ -1,6 +1,6 @@
 {
   "name": "@shapeshift/core",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Vue.js JSON Schema based form component",
   "main": "dist/shapeshift.cjs.js",
   "module": "dist/shapeshift.es.js",
@@ -14,10 +14,7 @@
     "test:coverage": "jest --coverage",
     "test:coveralls": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shapeshiftjs/shapeshift-core.git"
-  },
+  "repository": "shapeshiftjs/shapeshift-core",
   "author": "apparentvisuals",
   "license": "MIT",
   "bugs": {
