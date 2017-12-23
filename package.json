@@ -1,6 +1,6 @@
 {
   "name": "@shapeshift/core",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.1",
   "description": "Vue.js JSON Schema based form component",
   "main": "dist/shapeshift.cjs.js",
   "module": "dist/shapeshift.es.js",
