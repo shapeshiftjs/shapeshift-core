@@ -28,7 +28,7 @@
     "jest": "^22.0.3",
     "jest-cli": "^22.0.3",
     "rimraf": "^2.6.2",
-    "rollup": "^0.59.0",
+    "rollup": "^0.68.2",
     "rollup-plugin-commonjs": "^9.0.0",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-typescript2": "^0.13.0",
