@@ -30,7 +30,7 @@
     "rimraf": "^2.6.2",
     "rollup": "^0.65.0",
     "rollup-plugin-commonjs": "^9.0.0",
-    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-node-resolve": "^5.1.0",
     "rollup-plugin-typescript2": "^0.14.0",
     "semver": "^5.4.1",
     "ts-jest": "^23.0.0",
