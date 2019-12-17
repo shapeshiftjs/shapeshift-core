@@ -32,7 +32,7 @@
     "rollup-plugin-commonjs": "^9.0.0",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-typescript2": "^0.14.0",
-    "semver": "^5.4.1",
+    "semver": "^7.1.0",
     "ts-jest": "^23.0.0",
     "typescript": "^2.6.2"
   },
