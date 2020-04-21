@@ -24,7 +24,7 @@
   "devDependencies": {
     "@types/jest": "^23.0.0",
     "@types/json-schema": "^6.0.0",
-    "coveralls": "^3.0.0",
+    "coveralls": "^3.0.12",
     "jest": "^22.0.3",
     "jest-cli": "^22.0.3",
     "rimraf": "^2.6.2",
