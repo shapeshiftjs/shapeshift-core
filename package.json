@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/shapeshiftjs/shapeshift-core#readme",
   "devDependencies": {
-    "@types/jest": "^23.0.0",
+    "@types/jest": "^25.2.3",
     "@types/json-schema": "^6.0.0",
     "coveralls": "^3.0.0",
     "jest": "^22.0.3",
